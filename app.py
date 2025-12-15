@@ -31,16 +31,14 @@ def get_keywords(text_series, top_n=20):
 
 def analyze_sentiment_group(df, rating_col, content_col):
     # 简单的基于评分的情感分组
-    def analyze_sentiment_group(df, rating_col, content_col):
+def analyze_sentiment_group(df, rating_col, content_col):
     # 尝试将评分列强制转换为数字。如果遇到非数字（例如'N/A'或空字符串），则将其设置为 NaN。
-    df['Numeric_Rating'] = pd.to_numeric(df[rating_col], errors='coerce')
+df['Numeric_Rating'] = pd.to_numeric(df[rating_col], errors='coerce')
     
     # 移除无法转换为数字的行，或者给它们一个默认值 (例如 3)
     # 这里我们选择直接基于数字评分进行判断
     # 设定：小于等于3星为差评，大于3星为好评。 NaN 默认为中性 (4星)
-    df['Sentiment'] = df['Numeric_Rating'].apply(
-        lambda x: '差评 (痛点)' if x <= 3 else ('好评 (卖点)' if x > 3 else '无评分')
-    )
+df['Sentiment'] = df['Numeric_Rating'].apply(lambda x: '差评 (痛点)' if x <= 3 else ('好评 (卖点)' if x > 3 else '无评分') )
     return df
 
 # --- 侧边栏：数据上传 ---
@@ -160,3 +158,4 @@ if uploaded_file:
 else:
 
     st.info("👆 请在左侧上传文件开始分析")
+
